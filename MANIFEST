@@ -8,3 +8,4 @@ Makefile.PL
 README
 dist.ini
 lib/Dancer/Plugin/Locale/Wolowitz.pm
+t/00-load.t

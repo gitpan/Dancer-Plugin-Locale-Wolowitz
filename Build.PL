@@ -7,7 +7,8 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "Module::Build" => "0.3601"
+    "Module::Build" => "0.3601",
+    "Test::More" => 0
   },
   "configure_requires" => {
     "ExtUtils::MakeMaker" => "6.30",
@@ -18,7 +19,7 @@ my %module_build_args = (
     "Natal Ng\303\251tal"
   ],
   "dist_name" => "Dancer-Plugin-Locale-Wolowitz",
-  "dist_version" => "0.121390",
+  "dist_version" => "0.121391",
   "license" => "perl",
   "module_name" => "Dancer::Plugin::Locale::Wolowitz",
   "recommends" => {},

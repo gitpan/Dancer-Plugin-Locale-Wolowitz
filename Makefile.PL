@@ -12,7 +12,8 @@ my %WriteMakefileArgs = (
   "ABSTRACT" => "Intenationalization for Dancer",
   "AUTHOR" => "Natal Ng\303\251tal",
   "BUILD_REQUIRES" => {
-    "Module::Build" => "0.3601"
+    "Module::Build" => "0.3601",
+    "Test::More" => 0
   },
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30",
@@ -29,9 +30,9 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.121390",
+  "VERSION" => "0.121391",
   "test" => {
-    "TESTS" => ""
+    "TESTS" => "t/*.t"
   }
 );
 

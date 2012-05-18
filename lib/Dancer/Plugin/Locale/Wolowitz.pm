@@ -8,7 +8,7 @@
 #
 package Dancer::Plugin::Locale::Wolowitz;
 {
-  $Dancer::Plugin::Locale::Wolowitz::VERSION = '0.121390';
+  $Dancer::Plugin::Locale::Wolowitz::VERSION = '0.121391';
 }
 
 use strict;
@@ -22,8 +22,6 @@ use Dancer::Plugin;
 use Locale::Wolowitz;
 
 #ABSTRACT: Intenationalization for Dancer
-
-my $w = Locale::Wolowitz->new(_path_directory_locale());
 
 add_hook(
     before_template => sub {
@@ -41,6 +39,7 @@ register loc => sub {
 sub _loc {
     my ( $str, $args ) = @_;
 
+    my $w    = Locale::Wolowitz->new(_path_directory_locale());
     my $lang = _lang();
 
     !$args and return $w->loc($str, $lang);
@@ -87,7 +86,7 @@ Dancer::Plugin::Locale::Wolowitz - Intenationalization for Dancer
 
 =head1 VERSION
 
-version 0.121390
+version 0.121391
 
 =head1 SYNOPSIS
 
