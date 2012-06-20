@@ -19,7 +19,7 @@ my %module_build_args = (
     "Natal Ng\303\251tal"
   ],
   "dist_name" => "Dancer-Plugin-Locale-Wolowitz",
-  "dist_version" => "0.121391",
+  "dist_version" => "0.121720",
   "license" => "perl",
   "module_name" => "Dancer::Plugin::Locale::Wolowitz",
   "recommends" => {},

@@ -8,7 +8,7 @@
 #
 package Dancer::Plugin::Locale::Wolowitz;
 {
-  $Dancer::Plugin::Locale::Wolowitz::VERSION = '0.121391';
+  $Dancer::Plugin::Locale::Wolowitz::VERSION = '0.121720';
 }
 
 use strict;
@@ -23,6 +23,9 @@ use Locale::Wolowitz;
 
 #ABSTRACT: Intenationalization for Dancer
 
+
+my $w;
+
 add_hook(
     before_template => sub {
         my $tokens = shift;
@@ -31,7 +34,6 @@ add_hook(
     }
 );
 
-
 register loc => sub {
     _loc(@_);
 };
@@ -39,7 +41,7 @@ register loc => sub {
 sub _loc {
     my ( $str, $args ) = @_;
 
-    my $w    = Locale::Wolowitz->new(_path_directory_locale());
+    $w       = Locale::Wolowitz->new(_path_directory_locale()) unless defined($w);
     my $lang = _lang();
 
     !$args and return $w->loc($str, $lang);
@@ -60,14 +62,34 @@ sub _path_directory_locale {
 
 sub _lang {
     my $settings     = plugin_setting;
-    my $lang_session = $settings->{lang_session} // 'lang';
-    my $lang         = session($lang_session);
+    my $lang_session = $settings->{lang_session} || 'lang';
+    my $lang;
 
-    if ( ! $lang ) {
-        $lang = request->accept_language;
-        $lang =~ s/-\w+//g;
-        session $lang_session => $lang;
+    # don't force the user to store lang in a session
+    if ( setting('session') ) {
+        my $session_language = session $lang_session;
+
+        if ( !$session_language ) {
+            $lang = _detect_lang_from_browser();
+
+            session $lang_session => $lang;
+            return $lang;
+        }
+        else {
+            return $session_language;
+        }
     }
+
+    $lang = _detect_lang_from_browser();
+
+    return $lang;
+}
+
+sub _detect_lang_from_browser {
+    my $lang = request->accept_language;
+
+    $lang =~ s/-\w+//g;
+    $lang = (split(/,\s*/,$lang))[0] if $lang =~ /,/;
 
     return $lang;
 }
@@ -86,7 +108,7 @@ Dancer::Plugin::Locale::Wolowitz - Intenationalization for Dancer
 
 =head1 VERSION
 
-version 0.121391
+version 0.121720
 
 =head1 SYNOPSIS
 
