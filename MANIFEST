@@ -9,3 +9,6 @@ README
 dist.ini
 lib/Dancer/Plugin/Locale/Wolowitz.pm
 t/00-load.t
+t/01-basic.t
+t/i18n/locales.coll.json
+t/lib/TestApp.pm

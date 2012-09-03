@@ -3,13 +3,14 @@ abstract: 'Intenationalization for Dancer'
 author:
   - 'Natal Ngétal'
 build_requires:
+  Dancer::Test: 0
   Module::Build: 0.3601
   Test::More: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300016, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Zilla version 4.300009, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -17,9 +18,10 @@ meta-spec:
 name: Dancer-Plugin-Locale-Wolowitz
 requires:
   Dancer: 0
+  Dancer::Exception: 0
   Dancer::Plugin: 0
   Locale::Wolowitz: 0
   perl: 5.010
   strict: 0
   warnings: 0
-version: 0.121720
+version: 0.122470

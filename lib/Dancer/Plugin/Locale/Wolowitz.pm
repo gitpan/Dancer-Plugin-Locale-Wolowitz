@@ -8,7 +8,7 @@
 #
 package Dancer::Plugin::Locale::Wolowitz;
 {
-  $Dancer::Plugin::Locale::Wolowitz::VERSION = '0.121720';
+  $Dancer::Plugin::Locale::Wolowitz::VERSION = '0.122470';
 }
 
 use strict;
@@ -18,13 +18,19 @@ use 5.010;
 
 use Dancer ':syntax';
 use Dancer::Plugin;
+use Dancer::Exception qw(:all);
 
 use Locale::Wolowitz;
 
 #ABSTRACT: Intenationalization for Dancer
 
-
 my $w;
+
+#Register exception
+register_exception('DirectoryNotFound',
+    message_pattern => "Not found directory: %s"
+);
+
 
 add_hook(
     before_template => sub {
@@ -56,6 +62,10 @@ sub _path_directory_locale {
     my $path     = $settings->{locale_path_directory} // Dancer::FileUtils::path(
         setting('appdir'), 'i18n'
     );
+
+    if ( ! -d $path ) {
+        raise DirectoryNotFound => $path;
+    }
 
     return $path;
 }
@@ -108,7 +118,7 @@ Dancer::Plugin::Locale::Wolowitz - Intenationalization for Dancer
 
 =head1 VERSION
 
-version 0.121720
+version 0.122470
 
 =head1 SYNOPSIS
 

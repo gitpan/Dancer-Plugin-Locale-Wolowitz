@@ -12,6 +12,7 @@ my %WriteMakefileArgs = (
   "ABSTRACT" => "Intenationalization for Dancer",
   "AUTHOR" => "Natal Ng\303\251tal",
   "BUILD_REQUIRES" => {
+    "Dancer::Test" => 0,
     "Module::Build" => "0.3601",
     "Test::More" => 0
   },
@@ -25,12 +26,13 @@ my %WriteMakefileArgs = (
   "NAME" => "Dancer::Plugin::Locale::Wolowitz",
   "PREREQ_PM" => {
     "Dancer" => 0,
+    "Dancer::Exception" => 0,
     "Dancer::Plugin" => 0,
     "Locale::Wolowitz" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.121720",
+  "VERSION" => "0.122470",
   "test" => {
     "TESTS" => "t/*.t"
   }
