@@ -6,11 +6,12 @@ build_requires:
   Dancer::Test: 0
   Module::Build: 0.3601
   Test::More: 0
+  lib: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300009, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Zilla version 5.009, CPAN::Meta::Converter version 2.131560'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -24,4 +25,4 @@ requires:
   perl: 5.010
   strict: 0
   warnings: 0
-version: 0.122470
+version: 0.140120

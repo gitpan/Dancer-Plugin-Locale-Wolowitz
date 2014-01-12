@@ -1,14 +1,14 @@
 #
 # This file is part of Dancer-Plugin-Locale-Wolowitz
 #
-# This software is copyright (c) 2012 by Natal Ngétal.
+# This software is copyright (c) 2014 by Natal Ngétal.
 #
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
 package Dancer::Plugin::Locale::Wolowitz;
 {
-  $Dancer::Plugin::Locale::Wolowitz::VERSION = '0.122470';
+  $Dancer::Plugin::Locale::Wolowitz::VERSION = '0.140120';
 }
 
 use strict;
@@ -59,9 +59,8 @@ sub _loc {
 
 sub _path_directory_locale {
     my $settings = plugin_setting;
-    my $path     = $settings->{locale_path_directory} // Dancer::FileUtils::path(
-        setting('appdir'), 'i18n'
-    );
+    my $path     = $settings->{locale_path_directory}
+        // Dancer::FileUtils::path(setting('appdir'), 'i18n');
 
     if ( ! -d $path ) {
         raise DirectoryNotFound => $path;
@@ -98,6 +97,8 @@ sub _lang {
 sub _detect_lang_from_browser {
     my $lang = request->accept_language;
 
+    return unless $lang;
+
     $lang =~ s/-\w+//g;
     $lang = (split(/,\s*/,$lang))[0] if $lang =~ /,/;
 
@@ -108,9 +109,11 @@ register_plugin;
 
 1;
 
-
 __END__
+
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -118,7 +121,7 @@ Dancer::Plugin::Locale::Wolowitz - Intenationalization for Dancer
 
 =head1 VERSION
 
-version 0.122470
+version 0.140120
 
 =head1 SYNOPSIS
 
@@ -143,13 +146,12 @@ or
     <% l('Welcome') %>
     <% l('View %1', ['Country']) %>
 
-Translated to the requested language, if such a translation exists, otherwise no traslation occurs.
+Translated to the requested language, if such a translation exists, otherwise
+no traslation occurs.
 
     input: (Str): Key translate
            (Arrayref): Arguments are injected to the placeholders in the string
     output: (Str): Translated to the requested language
-
-=encoding UTF-8
 
 =head1 CONFIGURATION
 
@@ -189,10 +191,9 @@ Natal Ngétal
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by Natal Ngétal.
+This software is copyright (c) 2014 by Natal Ngétal.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
